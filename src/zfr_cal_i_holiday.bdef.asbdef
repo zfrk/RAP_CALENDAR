@@ -1,0 +1,47 @@
+managed with additional save implementation in class zfr_bp_cal_i_holiday unique;
+with draft;
+define behavior for ZFR_CAL_I_HOLIDAY alias HolidayRoot
+lock master total etag LastChangedAt
+persistent table zfr_cal_holiday
+draft table zfr_cal_d_holi
+etag master LocalLastChangedAt
+{
+	create;
+	update;
+	delete;
+	
+  field ( readonly : update ) HolidayId;
+
+   validation val_transport on save
+  { create; update; delete; }
+
+  mapping for zfr_cal_holiday corresponding
+  {
+    HolidayId = holiday_id;
+    MonthOfHoliday = month_of_holiday;
+    DayOfHoliday = day_of_holiday;
+  }
+}
+
+define behavior for ZFR_CAL_I_HOLIDAYTXT alias HolidayText
+persistent table zfr_cal_holitxt
+draft table zfr_cal_d_holit
+lock dependent by _Public_Holiday
+{
+  update;
+  delete;
+  field ( readonly : update ) HolidayId;
+  field ( readonly : update ) Language;
+
+  association _Public_Holiday { with draft; }
+
+  validation val_transport on save
+  { create; update; delete; }
+
+  mapping for zfr_cal_holitxt corresponding
+  {
+    Language = spras;
+    HolidayId = holiday_id;
+    HolidayDescription = fcal_description;
+  }
+}

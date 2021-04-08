@@ -1,0 +1,5 @@
+@EndUserText.label: 'Service definition for public holiday'
+define service ZFR_CAL_UI_HOLIDAY {
+  expose ZFR_CAL_C_HOLIDAY as HolidayRoot;
+  expose ZFR_CAL_C_HOLIDAYTXT as HolidayText;
+}

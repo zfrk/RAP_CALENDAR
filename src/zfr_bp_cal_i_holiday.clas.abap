@@ -1,0 +1,5 @@
+CLASS zfr_bp_cal_i_holiday DEFINITION PUBLIC ABSTRACT FINAL FOR BEHAVIOR OF zfr_cal_i_holiday.
+ENDCLASS.
+
+CLASS zfr_bp_cal_i_holiday IMPLEMENTATION.
+ENDCLASS.

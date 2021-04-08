@@ -1,0 +1,21 @@
+projection implementation in class zfr_bp_cal_c_holiday unique;
+use draft;
+
+define behavior for ZFR_CAL_C_HOLIDAY alias HolidayRoot
+use etag
+{
+  use create(augment);
+  use update(augment);
+  use delete;
+
+  use association _HolidayTxt { create; with draft; }
+  field ( modify ) HolidayDescription;
+}
+
+define behavior for ZFR_CAL_C_HOLIDAYTXT alias HolidayText
+{
+  use update;
+  use delete;
+
+  use association _Public_Holiday { with draft; }
+}
